@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+
 
 
 const Logo = (props) => (
-    <a>
+    <Link to="/">
         <img src={props.image}  alt={'Cent24'}></img>
-    </a>
+    </Link>
 )
 
 export default Logo;

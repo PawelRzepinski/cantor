@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AboutView from "../AboutView/AboutView";
 import ContactView from '../ContactView/ContactView';
-import MainTemplate from '../../templates/MainTemplate';
+import CurrencyView from '../CurrencyView/CurrencyView';
 import HomeView from '../HomeView/HomeView';
 
 
@@ -13,9 +13,9 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={HomeView} />
+        <Route exact path="/currency" component={CurrencyView} />
         <Route path="/about" component={AboutView} />
         <Route path="/contact" component={ContactView} />
-        <Route path="/contact:id" component={ContactView} />
       </Switch>
     </BrowserRouter>
   )
