@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import Navigation from "../../molecules/Navigation/Navigation";
 import Logo from '../../atoms/Logo/Logo';
 import logoImg from "../../../assets/logo.svg";
+
+
 
 
 const StyledWrapper = styled.header`
@@ -18,33 +21,12 @@ const StyledWrapper = styled.header`
 `;
 
 
-const StyledMenu = styled.ul`
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-`;
-
-
-const StyledMenuItem = styled.li`
-    padding: 5px 10px;
-`;
-
-
-
 const Header = () => (
     <StyledWrapper>
         <Logo image={logoImg} />
-        <StyledMenu>
-            <StyledMenuItem>Kursy walut</StyledMenuItem>
-            <StyledMenuItem>O nas</StyledMenuItem>
-            <StyledMenuItem>Kontakt</StyledMenuItem>
-        </StyledMenu>
+        <Navigation />
     </StyledWrapper>
 )
-
-
 
 
 export default Header;
