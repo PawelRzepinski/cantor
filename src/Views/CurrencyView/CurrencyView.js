@@ -1,13 +1,11 @@
 import React from 'react';
-import Logo from '../../Components/atoms/Logo/Logo';
-import Navigation from '../../Components/molecules/Navigation/Navigation';
+import Header from '../../Components/organisms/Header/Header';
 
 
 
 const CurrencyView = () => (
     <>
-    <Logo />
-    <Navigation />
+    <Header />
     <h1>Currency view</h1>
     </>
 )

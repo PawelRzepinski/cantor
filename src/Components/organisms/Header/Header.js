@@ -16,7 +16,7 @@ const StyledWrapper = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
+    padding: 0 34px 0 50px;
     background-color: white;
 `;
 

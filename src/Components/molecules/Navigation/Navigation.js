@@ -15,7 +15,14 @@ const StyledMenu = styled.ul`
 
 
 const StyledMenuItem = styled.li`
-    padding: 5px 10px;
+    a {
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        text-decoration: none;
+        color: #1A1A1A;
+    }
 
     .active {
         color: red;

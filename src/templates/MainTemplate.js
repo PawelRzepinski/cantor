@@ -11,6 +11,9 @@ const StyledMain = styled.main`
 
 const StyledMainSection = styled.section`
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 65vw;
     padding: 135px 50px 50px 50px;
