@@ -16,7 +16,7 @@ const StyledMainSection = styled.section`
     align-items: center;
     height: 100vh;
     width: 65vw;
-    padding: 135px 50px 50px 50px;
+    padding: 95px 50px 50px 50px;
 `;
 
 const StyledSideSection = styled.section`

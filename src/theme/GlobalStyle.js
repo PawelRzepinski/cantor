@@ -19,6 +19,24 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
     font-family: "Inter", sans-serif;
     overflow: hidden;
+    color: #1A1A1A;
+  }
+
+  div {
+    &::-webkit-scrollbar {
+      width: .5em;
+    }
+     
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 25px;
+    }
+     
+    &::-webkit-scrollbar-thumb {
+      background-color: #32994C;
+      // outline: 1px solid slategrey;
+      border-radius: 25px;
+    }
   }
 `;
 
