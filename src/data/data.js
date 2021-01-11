@@ -2,97 +2,74 @@ const rates = [
     {
         "currency": "dolar amerykański",
         "code": "USD",
-        "mid": 3.6656
+        "bid": 3.6492,
+        "ask": 3.7230
     },
     {
         "currency": "dolar australijski",
         "code": "AUD",
-        "mid": 2.842
-    },
-    {
-        "currency": "dolar Hongkongu",
-        "code": "HKD",
-        "mid": 0.4728
+        "bid": 2.8343,
+        "ask": 2.8915
     },
     {
         "currency": "dolar kanadyjski",
         "code": "CAD",
-        "mid": 2.8849
-    },
-    {
-        "currency": "dolar nowozelandzki",
-        "code": "NZD",
-        "mid": 2.6601
-    },
-    {
-        "currency": "dolar singapurski",
-        "code": "SGD",
-        "mid": 2.7718
+        "bid": 2.8724,
+        "ask": 2.9304
     },
     {
         "currency": "euro",
         "code": "EUR",
-        "mid": 4.4973
+        "bid": 4.4696,
+        "ask": 4.5598
     },
     {
         "currency": "forint (Węgry)",
         "code": "HUF",
-        "mid": 0.012605
+        "bid": 0.012433,
+        "ask": 0.012685
     },
     {
         "currency": "frank szwajcarski",
         "code": "CHF",
-        "mid": 4.1505
+        "bid": 4.1241,
+        "ask": 4.2075
     },
     {
         "currency": "funt szterling",
         "code": "GBP",
-        "mid": 4.9832
-    },
-    {
-        "currency": "hrywna (Ukraina)",
-        "code": "UAH",
-        "mid": 0.1297
+        "bid": 4.9568,
+        "ask": 5.0570
     },
     {
         "currency": "jen (Japonia)",
         "code": "JPY",
-        "mid": 0.035392
+        "bid": 0.035118,
+        "ask": 0.035828
     },
     {
         "currency": "korona czeska",
         "code": "CZK",
-        "mid": 0.1718
+        "bid": 0.1709,
+        "ask": 0.1743
     },
     {
         "currency": "korona duńska",
         "code": "DKK",
-        "mid": 0.6046
-    },
-    {
-        "currency": "korona islandzka",
-        "code": "ISK",
-        "mid": 0.02881
+        "bid": 0.6010,
+        "ask": 0.6132
     },
     {
         "currency": "korona norweska",
         "code": "NOK",
-        "mid": 0.4344
+        "bid": 0.4345,
+        "ask": 0.4433
     },
     {
         "currency": "korona szwedzka",
         "code": "SEK",
-        "mid": 0.4466
-    },
-    {
-        "currency": "kuna (Chorwacja)",
-        "code": "HRK",
-        "mid": 0.5949
-    },
-    {
-        "currency": "lej rumuński",
-        "code": "RON",
-        "mid": 0.9234
+        "bid": 0.4441,
+        "ask": 0.4531
     },
 ];
 

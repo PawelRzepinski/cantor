@@ -25,7 +25,7 @@ const StyledMenuItem = styled.li`
     }
 
     .active {
-        color: red;
+        color: ${({ theme }) => theme.colors.green};
     }
 `;
 
