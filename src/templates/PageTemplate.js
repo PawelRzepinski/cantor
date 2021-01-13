@@ -52,7 +52,7 @@ const PageTemplate = ({children, sideSectionImg}) => (
             {children}
         </StyledMainSection>
         <StyledSideSection>
-            <img src={sideSectionImg}></img>
+            <img src={sideSectionImg} alt=""></img>
         </StyledSideSection>
     </StyledPageWrapper>
 )

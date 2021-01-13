@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import rates from '../../../data/data';
+import Button from '../../atoms/Button/Button';
+import ButtonCalculator from '../../atoms/ButtonCalculator/ButtonCalculator';
 
 
 
@@ -82,22 +84,33 @@ const StyledOutputWrapper = styled(StyledInputsWrapper)`
 const StyledButtonsWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
 
 // button jako osobny element z własnym StyledWrapper
-    button {
-        padding: 8px 16px;
+    /* button {
+        padding: 12px 32px;
         border-radius: 25px 0 0 25px;
         border: none;
-        background-color: ${({ theme }) => theme.colors.gray.gray05};;
+        background-color: ${({ theme }) => theme.colors.gray.gray05};
+        color: ${({ theme }) => theme.colors.gray.gray60};
+        font-weight: 600;
+        cursor: pointer;
 
         &:last-child {
             border-left: 1px solid ${({ theme }) => theme.colors.gray.gray40};
             border-radius: 0 25px 25px 0;
+            background-color: ${({ theme }) => theme.colors.green.primary50};
+            color: white;
         }
-    }
+    } */
 `;
 
 // Stworzyć element button który będzie przyjmował propsa active?
+
+
+const ButtonCalc = styled.button`
+
+`;
 
 
 const Select = () => (
@@ -130,8 +143,8 @@ class Calculator extends React.Component {
             <StyledWrapper>
                 <h1>Kalkulator wymiany walut</h1>
                 <StyledButtonsWrapper>
-                    <button>Kupuję</button>
-                    <button>Sprzedaję</button>
+                    <ButtonCalculator name={"Kupię"} active/>
+                    <ButtonCalculator name={"Sprzedam"}/>
                 </StyledButtonsWrapper>
                 <StyledInputsWrapper>
                     <Input placeholder={"1000"} />
@@ -142,6 +155,7 @@ class Calculator extends React.Component {
                     <Input placeholder={"1000"} type={'text'} value={"wynik mnożenia"} disabled/>
                     <Input type={'text'} value={"PLN"} disabled/>
                 </StyledOutputWrapper>
+                <Button>Rezerwuj kurs</Button>
             </StyledWrapper>
         )
     }
