@@ -4,11 +4,12 @@ import rates from '../../../data/data';
 import Button from '../../atoms/Button/Button';
 import ButtonCalculator from '../../atoms/ButtonCalculator/ButtonCalculator';
 import RateBox from '../../molecules/RateBox/RateBox';
+import SelectCalculator from '../../atoms/SelectCalculator/SelectCalculator';
 
 
 
-const Input = ({type, placeholder, value, disabled}) => (
-    <input placeholder={placeholder} type={type} value={value} disabled={disabled}></input>
+const Input = ({type, placeholder, value, disabled, ...props}) => (
+    <input placeholder={placeholder} type={type} value={value} disabled={disabled} {...props}></input>
 )
 
 const StyledWrapper = styled.div`
@@ -65,11 +66,16 @@ const StyledOutputWrapper = styled(StyledInputsWrapper)`
     border-top: none;
     border-radius: 0 0 4px 4px;
 
-    input:last-child {
-        width: 25%;
-        text-align: left;
-        padding-left: 20px;
-        border: none;
+    input {
+        font-weight: 600;
+        
+        &:last-child {
+            width: 25%;
+            text-align: left;
+            padding-left: 20px;
+            border: none;
+            font-weight: 400;
+        }
     }
 
     span {
@@ -98,23 +104,27 @@ const StyledFootercalculator = styled.div`
 `;
 
 
-const Select = () => (
-    <select onChange={e => {console.log(e.target.value)}}>
-        {rates.map(rate => (
-            <option key={rate.code} data-buy={rate.bid} data-sale={rate.ask}>{rate.code}</option>
-        ))}
-    </select>
-)
+
 
 
 
 class Calculator extends React.Component {
     state = {
+        data: [],
         buy: true,
+        inputValue: null,
+        transactionValue: 0,
+        rate: 0,
+        code: ''
+    }
+
+    componentDidMount() {
+        this.setState({data: [...rates]})
     }
 
     handleClickBuy = () => this.setState({buy: true});
     handleClickSale = () => this.setState({buy: false});
+    handleChangeValue = (e) => this.setState({inputValue: e.target.value})
 
 
     render () {
@@ -122,16 +132,16 @@ class Calculator extends React.Component {
             <StyledWrapper>
                 <h1>Kalkulator wymiany walut</h1>
                 <StyledButtonsWrapper>
-                    <ButtonCalculator name={"Kupię"} active onClick={this.handleClickBuy} />
-                    <ButtonCalculator name={"Sprzedam"} onClick={this.handleClickSale} />
+                    <ButtonCalculator name={"Kupię"} active={this.state.buy ? true : false} onClick={this.handleClickBuy} />
+                    <ButtonCalculator name={"Sprzedam"} active={this.state.buy ? false : true} onClick={this.handleClickSale} />
                 </StyledButtonsWrapper>
                 <StyledInputsWrapper>
-                    <Input placeholder={"1000"} />
-                    <Select name={"paweł"} />
+                    <Input placeholder={"1000"} onChange={this.handleChangeValue} />
+                    <SelectCalculator currency={this.state.data} rate={this.state.rate} code={this.state.code} rateType={this.state.buy}  />
                 </StyledInputsWrapper>
                 <StyledOutputWrapper>
                     <span>=</span>
-                    <Input placeholder={"1000"} type={'text'} value={"wynik mnożenia"} disabled/>
+                    <Input placeholder={"1000"} type={'text'} value={this.state.transactionValue} disabled/>
                     <Input type={'text'} value={"PLN"} disabled/>
                 </StyledOutputWrapper>
                 <StyledFootercalculator>
