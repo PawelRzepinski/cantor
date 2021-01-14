@@ -105,9 +105,6 @@ const StyledFootercalculator = styled.div`
 
 
 
-
-
-
 class Calculator extends React.Component {
     state = {
         data: [],
@@ -122,9 +119,56 @@ class Calculator extends React.Component {
         this.setState({data: [...rates]})
     }
 
-    handleClickBuy = () => this.setState({buy: true});
-    handleClickSale = () => this.setState({buy: false});
-    handleChangeValue = (e) => this.setState({inputValue: e.target.value})
+    // [TODO: Do poniższych funkcji dodać PREVSTATE]
+
+    handleClickBuy = () => {
+        const select = document.querySelector('select');
+        const selected = select.options[select.selectedIndex];
+        const rate = selected.dataset.buy;
+
+        this.setState({
+            buy: true,
+            rate: rate
+        });
+        this.countTransactionValue();
+    }
+
+    handleClickSale = () => {
+        const select = document.querySelector('select');
+        const selected = select.options[select.selectedIndex];
+        const rate = selected.dataset.sale;
+
+        this.setState({
+            buy: false,
+            rate: rate
+        });
+        this.countTransactionValue();
+    }
+
+    handleChangeValue = (e) => {
+        this.setState({
+            inputValue: e.target.value,
+        })
+        this.countTransactionValue();
+    }
+
+    handleChangeSelect = (e) => {
+        const selected = e.target.options[e.target.selectedIndex];
+        const rate = this.state.buy ? selected.dataset.buy : selected.dataset.sale;
+
+        this.setState({
+            rate: rate,
+            code: e.target.value,
+        })
+        this.countTransactionValue();
+    }
+
+    countTransactionValue = () => {
+        const transactionValue = this.state.rate * this.state.inputValue;
+        this.setState({
+            transactionValue: transactionValue
+        })
+    }
 
 
     render () {
@@ -137,7 +181,7 @@ class Calculator extends React.Component {
                 </StyledButtonsWrapper>
                 <StyledInputsWrapper>
                     <Input placeholder={"1000"} onChange={this.handleChangeValue} />
-                    <SelectCalculator currency={this.state.data} rate={this.state.rate} code={this.state.code} rateType={this.state.buy}  />
+                    <SelectCalculator currency={this.state.data} submitFn={this.handleChangeSelect}  />
                 </StyledInputsWrapper>
                 <StyledOutputWrapper>
                     <span>=</span>
@@ -152,5 +196,6 @@ class Calculator extends React.Component {
         )
     }
 }
+
 
 export default Calculator;

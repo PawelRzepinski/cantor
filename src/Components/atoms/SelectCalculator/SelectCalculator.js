@@ -1,23 +1,16 @@
 import React from "react";
-import styled from 'styled-components';
 
 
-const SelectCalculator = ({ currency }) => {
 
-    const handleChange = (e) => {
-        const select = e.target;
-        console.log(select.options[select.selectedIndex])
-    }
+const SelectCalculator = ({ currency, submitFn }) => (
+    <select onChange={submitFn}>
+        {currency.map(item => (
+            <option key={ item.code } data-sale={ item.bid } data-buy={ item.ask }>
+                { item.code }
+            </option>
+        ))}
+    </select>
+)
 
-    return (
-        <select onChange={ handleChange }>
-            {currency.map(item => (
-                <option key={ item.code } data-buy={ item.bid } data-sale={ item.ask }>
-                    { item.code }
-                </option>
-            ))}
-        </select>
-    )
-}
 
 export default SelectCalculator;
