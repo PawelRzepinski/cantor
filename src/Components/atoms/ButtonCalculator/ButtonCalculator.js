@@ -11,19 +11,27 @@ const StyledButton = styled(Button)`
     padding: 8px 16px;
     border-radius: 25px 0 0 25px;
 
+    &:hover {
+        background-color: ${({ theme }) => theme.colors.gray.gray05};
+    }
+
     &:last-child {
-        border-radius: 0 25px 25px 0;
+        border-radius: 0 25px 25px 0;        
     }
 
     ${({ active }) => active && css`
         background-color: ${({ theme }) => theme.colors.green.primary50};
         color: ${({ theme }) => theme.colors.white};
+
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.green.primary50};
+        }
     `}
 `;
 
 
-const ButtonCalculator = ({name, active}) => (
-    <StyledButton active={active}>{name}</StyledButton>
+const ButtonCalculator = ({ name, active, ...props}) => (
+    <StyledButton active={active} {...props}>{name}</StyledButton>
 )
 
 

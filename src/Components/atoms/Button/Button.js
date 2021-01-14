@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 
-
-
 const Button = styled.button`
     padding: 12px 32px;
     background-color: ${({ theme }) => theme.colors.green.primary50};
@@ -13,6 +11,10 @@ const Button = styled.button`
     font-weight: 600;
     line-height: 24px;
     cursor: pointer;
+
+    &:hover {
+        background-color: ${({ theme }) => theme.colors.green.hover};
+    }
 `;
 
 

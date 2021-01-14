@@ -8,6 +8,7 @@ export const theme = {
             primary10: '#8BD99F',
             primary20: '#51C66F',
             primary50: '#32994C',
+            hover:     '#257339',
         },
         gray: {
             gray00:  '#F1F1F1',

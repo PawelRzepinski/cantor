@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import rates from '../../../data/data';
 import Button from '../../atoms/Button/Button';
 import ButtonCalculator from '../../atoms/ButtonCalculator/ButtonCalculator';
+import RateBox from '../../molecules/RateBox/RateBox';
 
 
 
@@ -85,31 +86,15 @@ const StyledButtonsWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 20px;
-
-// button jako osobny element z własnym StyledWrapper
-    /* button {
-        padding: 12px 32px;
-        border-radius: 25px 0 0 25px;
-        border: none;
-        background-color: ${({ theme }) => theme.colors.gray.gray05};
-        color: ${({ theme }) => theme.colors.gray.gray60};
-        font-weight: 600;
-        cursor: pointer;
-
-        &:last-child {
-            border-left: 1px solid ${({ theme }) => theme.colors.gray.gray40};
-            border-radius: 0 25px 25px 0;
-            background-color: ${({ theme }) => theme.colors.green.primary50};
-            color: white;
-        }
-    } */
 `;
 
-// Stworzyć element button który będzie przyjmował propsa active?
-
-
-const ButtonCalc = styled.button`
-
+const StyledFootercalculator = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
 `;
 
 
@@ -125,17 +110,11 @@ const Select = () => (
 
 class Calculator extends React.Component {
     state = {
-        currencyA: {
-            code: 'PLN',
-            mid: 1,
-        },
-        currencyB: {
-            code: 'USD',
-            mid: 4.5
-        },
-        value: 1000,
+        buy: true,
     }
 
+    handleClickBuy = () => this.setState({buy: true});
+    handleClickSale = () => this.setState({buy: false});
 
 
     render () {
@@ -143,8 +122,8 @@ class Calculator extends React.Component {
             <StyledWrapper>
                 <h1>Kalkulator wymiany walut</h1>
                 <StyledButtonsWrapper>
-                    <ButtonCalculator name={"Kupię"} active/>
-                    <ButtonCalculator name={"Sprzedam"}/>
+                    <ButtonCalculator name={"Kupię"} active onClick={this.handleClickBuy} />
+                    <ButtonCalculator name={"Sprzedam"} onClick={this.handleClickSale} />
                 </StyledButtonsWrapper>
                 <StyledInputsWrapper>
                     <Input placeholder={"1000"} />
@@ -155,7 +134,10 @@ class Calculator extends React.Component {
                     <Input placeholder={"1000"} type={'text'} value={"wynik mnożenia"} disabled/>
                     <Input type={'text'} value={"PLN"} disabled/>
                 </StyledOutputWrapper>
-                <Button>Rezerwuj kurs</Button>
+                <StyledFootercalculator>
+                    <RateBox name={'Aktualny kurs'} rate={'4,567'}/>
+                    <Button>Rezerwuj kurs</Button>                
+                </StyledFootercalculator>
             </StyledWrapper>
         )
     }

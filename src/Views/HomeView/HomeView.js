@@ -12,6 +12,7 @@ import SideSectionImg from '../../assets/exchange.jpg';
 class HomeView extends React.Component {
     state = {
         data: [], // dane z Api
+        calculatorBuy: true,
     }
 
 
