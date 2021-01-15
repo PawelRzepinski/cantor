@@ -116,10 +116,12 @@ class Calculator extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({data: [...rates]})
+        this.setState({
+            data: [...rates],
+            rate: rates[0].ask
+        });
     }
 
-    // [TODO: Do poniższych funkcji dodać PREVSTATE]
 
     handleClickBuy = () => {
         const select = document.querySelector('select');
@@ -146,6 +148,7 @@ class Calculator extends React.Component {
     }
 
     handleChangeValue = (e) => {
+        console.log(e.target.value)
         this.setState({
             inputValue: e.target.value,
         })
