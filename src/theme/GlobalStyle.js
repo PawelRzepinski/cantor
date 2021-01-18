@@ -22,6 +22,16 @@ const GlobalStyle = createGlobalStyle`
     color: #1A1A1A;
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
   div {
     &::-webkit-scrollbar {
       width: .5em;

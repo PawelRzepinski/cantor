@@ -2,15 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import rates from '../../../data/data';
 import Button from '../../atoms/Button/Button';
+import Input from '../../atoms/Input/Input';
 import ButtonCalculator from '../../atoms/ButtonCalculator/ButtonCalculator';
 import RateBox from '../../molecules/RateBox/RateBox';
 import SelectCalculator from '../../atoms/SelectCalculator/SelectCalculator';
 
 
-
-const Input = ({type, placeholder, value, disabled, ...props}) => (
-    <input placeholder={placeholder} type={type} value={value} disabled={disabled} {...props}></input>
-)
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -115,13 +112,13 @@ class Calculator extends React.Component {
         code: ''
     }
 
+    
     componentDidMount() {
         this.setState({
             data: [...rates],
             rate: rates[0].ask
         });
     }
-
 
     handleClickBuy = () => {
         const select = document.querySelector('select');
@@ -130,9 +127,9 @@ class Calculator extends React.Component {
 
         this.setState({
             buy: true,
-            rate: rate
+            rate: rate,
+            transactionValue: this.updateTransactionValue(this.state.inputValue, rate)
         });
-        this.countTransactionValue();
     }
 
     handleClickSale = () => {
@@ -142,17 +139,16 @@ class Calculator extends React.Component {
 
         this.setState({
             buy: false,
-            rate: rate
+            rate: rate,
+            transactionValue: this.updateTransactionValue(this.state.inputValue, rate)
         });
-        this.countTransactionValue();
     }
 
     handleChangeValue = (e) => {
-        console.log(e.target.value)
         this.setState({
             inputValue: e.target.value,
+            transactionValue: this.updateTransactionValue(e.target.value)
         })
-        this.countTransactionValue();
     }
 
     handleChangeSelect = (e) => {
@@ -162,15 +158,13 @@ class Calculator extends React.Component {
         this.setState({
             rate: rate,
             code: e.target.value,
+            transactionValue: this.updateTransactionValue(this.state.inputValue, rate)
         })
-        this.countTransactionValue();
     }
 
-    countTransactionValue = () => {
-        const transactionValue = this.state.rate * this.state.inputValue;
-        this.setState({
-            transactionValue: transactionValue
-        })
+    updateTransactionValue = (value , rate = this.state.rate) => {
+        const transactionValue = value * rate;
+        return transactionValue;
     }
 
 
@@ -183,7 +177,7 @@ class Calculator extends React.Component {
                     <ButtonCalculator name={"Sprzedam"} active={this.state.buy ? false : true} onClick={this.handleClickSale} />
                 </StyledButtonsWrapper>
                 <StyledInputsWrapper>
-                    <Input placeholder={"1000"} onChange={this.handleChangeValue} />
+                    <Input type={'number'} placeholder={"1000"} onChange={this.handleChangeValue} />
                     <SelectCalculator currency={this.state.data} submitFn={this.handleChangeSelect}  />
                 </StyledInputsWrapper>
                 <StyledOutputWrapper>
@@ -192,7 +186,7 @@ class Calculator extends React.Component {
                     <Input type={'text'} value={"PLN"} disabled/>
                 </StyledOutputWrapper>
                 <StyledFootercalculator>
-                    <RateBox name={'Aktualny kurs'} rate={'4,567'}/>
+                    <RateBox name={'Aktualny kurs'} rate={this.state.rate}/>
                     <Button>Rezerwuj kurs</Button>                
                 </StyledFootercalculator>
             </StyledWrapper>
