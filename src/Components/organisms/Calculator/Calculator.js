@@ -112,7 +112,7 @@ class Calculator extends React.Component {
         code: ''
     }
 
-    
+
     componentDidMount() {
         this.setState({
             data: [...rates],
@@ -163,7 +163,8 @@ class Calculator extends React.Component {
     }
 
     updateTransactionValue = (value , rate = this.state.rate) => {
-        const transactionValue = value * rate;
+        let transactionValue = value * rate;
+        transactionValue = Math.round(transactionValue * 100) / 100;
         return transactionValue;
     }
 
