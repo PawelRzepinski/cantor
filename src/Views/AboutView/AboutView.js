@@ -1,7 +1,11 @@
 import React from 'react';
+import PageTemplate from '../../templates/PageTemplate';
+import SideSectionImg from '../../assets/exchange.jpg';
 
 const AboutView = () => (
-    <h1>About view</h1>
+    <PageTemplate sideSectionImg={SideSectionImg}>
+
+    </PageTemplate>
 )
 
 export default AboutView;
