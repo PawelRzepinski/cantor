@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Button from '../Button/Button';
 
@@ -33,6 +35,12 @@ const StyledButton = styled(Button)`
 const ButtonCalculator = ({ name, active, ...props}) => (
     <StyledButton active={active} {...props}>{name}</StyledButton>
 )
+
+
+ButtonCalculator.propTypes = {
+    name: PropTypes.string.isRequired,
+    active: PropTypes.bool.isRequired,
+}
 
 
 export default ButtonCalculator;
