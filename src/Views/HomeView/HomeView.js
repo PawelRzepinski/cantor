@@ -1,6 +1,5 @@
 import React from 'react';
 import Calculator from '../../Components/organisms/Calculator/Calculator';
-import rates from '../../data/data';
 import PageTemplate from '../../templates/PageTemplate';
 import SideSectionImg from '../../assets/exchange.jpg';
 import axios from 'axios';
@@ -21,8 +20,6 @@ class HomeView extends React.Component {
 
 
     render() {
-        console.log('HomeView')
-        console.log(this.state.data)
         return (
             <PageTemplate sideSectionImg={SideSectionImg}>
                 <Calculator rates={ this.state.data } />
