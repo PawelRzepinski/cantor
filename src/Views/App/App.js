@@ -1,12 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MainTemplate from '../../templates/MainTemplate';
-import GlobalStyle from '../../theme/GlobalStyle';
 import AboutView from "../AboutView/AboutView";
 import ContactView from '../ContactView/ContactView';
 import CurrencyView from '../CurrencyView/CurrencyView';
 import HomeView from '../HomeView/HomeView';
-
 
 
 
