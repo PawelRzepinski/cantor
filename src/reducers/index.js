@@ -1,5 +1,5 @@
 const initialState = {
-    data: [
+    currency: [
         {
             "currency": "dolar amerykański",
             "code": "USD",
@@ -82,7 +82,7 @@ const initialState = {
 }
 
 const rootReducers = (state = initialState, action) => {
-    console.log(action)
+    return state
 }
 
 export default rootReducers;
