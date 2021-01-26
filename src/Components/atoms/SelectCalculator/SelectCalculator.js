@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 
 
@@ -12,5 +13,10 @@ const SelectCalculator = ({ currency, submitFn }) => (
     </select>
 )
 
+
+SelectCalculator.propTypes = {
+    currency: PropTypes.array.isRequired,
+    submitFn: PropTypes.func.isRequired,
+}
 
 export default SelectCalculator;
