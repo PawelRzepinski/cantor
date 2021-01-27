@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import rates from '../../../data/data';
+import { connect } from "react-redux";
 import Button from '../../atoms/Button/Button';
 import Input from '../../atoms/Input/Input';
 import ButtonCalculator from '../../atoms/ButtonCalculator/ButtonCalculator';
@@ -104,19 +104,18 @@ const StyledFootercalculator = styled.div`
 
 class Calculator extends React.Component {
     state = {
-        data: [],
         buy: true,
+        code: '',
+        currency: [],
         inputValue: null,
-        transactionValue: 0,
         rate: 0,
-        code: ''
+        transactionValue: 0,
     }
-
 
     componentDidMount() {
         this.setState({
-            data: [...rates],
-            rate: rates[0].ask
+            currency: this.props.currency,
+            rate: this.props.currency[0].ask
         });
     }
 
@@ -179,7 +178,7 @@ class Calculator extends React.Component {
                 </StyledButtonsWrapper>
                 <StyledInputsWrapper>
                     <Input type={'number'} placeholder={"1000"} onChange={this.handleChangeValue} />
-                    <SelectCalculator currency={this.state.data} submitFn={this.handleChangeSelect}  />
+                    <SelectCalculator currency={this.state.currency} submitFn={this.handleChangeSelect}  />
                 </StyledInputsWrapper>
                 <StyledOutputWrapper>
                     <span>=</span>
@@ -196,4 +195,7 @@ class Calculator extends React.Component {
 }
 
 
-export default Calculator;
+const mapStateToProps = ({ currency }) => ({ currency })
+
+
+export default connect(mapStateToProps)(Calculator);
