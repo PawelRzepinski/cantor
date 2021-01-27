@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
 
@@ -15,13 +14,10 @@ const SelectCalculator = ({ currency, submitFn }) => (
 )
 
 
-const mapStateToProps = ({ currency }) => ({ currency })
-
-
 SelectCalculator.propTypes = {
     currency: PropTypes.array.isRequired,
     submitFn: PropTypes.func.isRequired,
 }
 
 
-export default connect(mapStateToProps)(SelectCalculator);
+export default SelectCalculator;
