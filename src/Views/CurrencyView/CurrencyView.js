@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
 import PageTemplate from '../../templates/PageTemplate';
 import money from '../../assets/money.jpg';
-import rates from '../../data/data';
-
 
 
 
@@ -52,47 +51,35 @@ const StyledTableCurrencyWrapper = styled.div`
 `;
 
 
-class CurrencyView extends React.Component {
-    state = {
-        data: []
-    }
-
-    componentDidMount() {
-        this.setState ({
-            data: [...rates]
-        })
-    }
-
-    render () {
-        return (
-            <PageTemplate sideSectionImg={money}>
-                <StyledTableWrapper>
-                    <StyledTableRow>
-                        <div><p>Waluta</p></div>
+const CurrencyView = ({ currency }) => (
+    <PageTemplate sideSectionImg={money}>
+        <StyledTableWrapper>
+            <StyledTableRow>
+                <div><p>Waluta</p></div>
+                <StyledTableCurrencyWrapper>
+                    <div><p>Kupno</p></div>
+                    <div><p>Sprzedaż</p></div>
+                </StyledTableCurrencyWrapper>
+            </StyledTableRow>
+            { currency.map(function(item){
+                return (
+                    <StyledTableRow key={item.code}>
+                        <div>
+                            {item.code}
+                        </div>
                         <StyledTableCurrencyWrapper>
-                            <div><p>Kupno</p></div>
-                            <div><p>Sprzedaż</p></div>
+                            <div>{item.bid}</div>
+                            <div>{item.ask}</div>
                         </StyledTableCurrencyWrapper>
                     </StyledTableRow>
-                    {
-                        this.state.data.map(function(item){
-                        return (
-                            <StyledTableRow key={item.code}>
-                                <div>
-                                    {item.code}
-                                </div>
-                                <StyledTableCurrencyWrapper>
-                                    <div>{item.bid}</div>
-                                    <div>{item.ask}</div>
-                                </StyledTableCurrencyWrapper>
-                            </StyledTableRow>
-                        )
-                    })}
-                </StyledTableWrapper>
-            </ PageTemplate>
-        )
-    }
-}
+                )
+            })}
+        </StyledTableWrapper>            
+    </ PageTemplate>            
+)
 
 
-export default CurrencyView;
+const mapStateToProps = ({ currency }) => ({ currency })
+
+
+export default connect(mapStateToProps)(CurrencyView);
