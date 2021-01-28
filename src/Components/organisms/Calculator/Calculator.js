@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { connect } from "react-redux";
+import { currencyUpdate } from '../../../actions/index';
 import Button from '../../atoms/Button/Button';
 import Input from '../../atoms/Input/Input';
 import ButtonCalculator from '../../atoms/ButtonCalculator/ButtonCalculator';
@@ -112,11 +114,18 @@ class Calculator extends React.Component {
         transactionValue: 0,
     }
 
-    componentDidMount() {
-        this.setState({
-            currency: this.props.currency,
-            rate: this.props.currency[0].ask
-        });
+    componentDidMount () {
+        axios.get('http://api.nbp.pl/api/exchangerates/tables/c/')
+        .then(({ data }) => {
+            const { currencyUpdate } = this.props;
+            currencyUpdate(data[0].rates);
+
+            this.setState({
+                currency: data[0].rates,
+                rate: data[0].rates[0].ask
+            })
+        })
+        .catch((error) => alert('Coś poszło nie tak z pobieraniem walut z NBP'))
     }
 
     handleClickBuy = () => {
@@ -195,7 +204,9 @@ class Calculator extends React.Component {
 }
 
 
-const mapStateToProps = ({ currency }) => ({ currency })
+const mapDispatchToProps = dispatch => ({
+    currencyUpdate: (currency) => dispatch(currencyUpdate(currency))
+})
 
 
-export default connect(mapStateToProps)(Calculator);
+export default connect(null, mapDispatchToProps)(Calculator);
