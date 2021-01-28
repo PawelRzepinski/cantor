@@ -1,8 +1,10 @@
 import React from 'react';
+// import axios from 'axios';
+// import { connect } from 'react-redux';
+// import { currencyUpdate } from '../../actions/index.js';
 import Calculator from '../../Components/organisms/Calculator/Calculator';
 import PageTemplate from '../../templates/PageTemplate';
 import SideSectionImg from '../../assets/exchange.jpg';
-import axios from 'axios';
 
 
 class HomeView extends React.Component {
@@ -10,23 +12,21 @@ class HomeView extends React.Component {
         data: [],
     }
 
-    componentDidMount () {
-        axios.get('http://api.nbp.pl/api/exchangerates/tables/c/')
-        .then(({ data }) => {
-            this.setState({ data: [data[0].rates] })
-        })
-        .catch((error) => alert('Coś poszło nie'))
-    }
+    
 
+    
 
     render() {
         return (
             <PageTemplate sideSectionImg={SideSectionImg}>
-                <Calculator rates={ this.state.data } />
+                <Calculator />
             </PageTemplate>
         )
     }
 }
+
+
+
 
 
 export default HomeView;

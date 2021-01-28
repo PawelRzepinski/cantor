@@ -75,7 +75,7 @@ const CurrencyView = ({ currency }) => (
                 )
             })}
         </StyledTableWrapper>            
-    </ PageTemplate>            
+    </ PageTemplate>
 )
 
 
