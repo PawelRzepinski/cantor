@@ -7,6 +7,7 @@ import AboutView from "../AboutView/AboutView";
 import ContactView from '../ContactView/ContactView';
 import CurrencyView from '../CurrencyView/CurrencyView';
 import HomeView from '../HomeView/HomeView';
+import LoginView from '../LoginView/LoginView';
 
 
 
@@ -20,6 +21,7 @@ function App() {
             <Route exact path="/currency" component={CurrencyView} />
             <Route path="/about" component={AboutView} />
             <Route path="/contact" component={ContactView} />
+            <Route path="/login" component={LoginView} />
           </Switch>
         </MainTemplate>
       </BrowserRouter>
