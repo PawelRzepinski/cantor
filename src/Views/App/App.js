@@ -8,7 +8,8 @@ import ContactView from '../ContactView/ContactView';
 import CurrencyView from '../CurrencyView/CurrencyView';
 import HomeView from '../HomeView/HomeView';
 import LoginView from '../LoginView/LoginView';
-
+import PanelView from '../PanelView/PanelView';
+import SignupView from '../SignupView/SignupView';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
             <Route path="/about" component={AboutView} />
             <Route path="/contact" component={ContactView} />
             <Route path="/login" component={LoginView} />
+            <Route path="/signup" component={SignupView} />
+            <Route path="/panel" component={PanelView} />
           </Switch>
         </MainTemplate>
       </BrowserRouter>

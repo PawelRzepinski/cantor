@@ -1,4 +1,5 @@
-import { AUTH_REQUEST, AUTH_SUCCESS, UPDATE_CURRENCY } from "../actions/index.js";
+import { act } from "react-dom/test-utils";
+import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE, UPDATE_CURRENCY } from "../actions/index.js";
 
 const initialState = {
     currency: [
@@ -13,12 +14,26 @@ const initialState = {
 
 const rootReducers = (state = initialState, action) => {
     switch (action.type) {
-        case (UPDATE_CURRENCY):
+        case UPDATE_CURRENCY:
             return {
                 ...state,
                 currency: action.payload.currency
             }
+
+        case AUTH_SUCCESS:
+            console.log('success')
+            console.log(action.payload.data._id)
+            return {
+                ...state,
+                userId: action.payload.data._id,
+                userName: action.payload.data.username,
+            }    
     
+        case AUTH_FAILURE:
+            return {
+                ...state,
+                loginStatus: 'fail'
+            }
         default:
             return state
     }

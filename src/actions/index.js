@@ -2,9 +2,8 @@ import axios from 'axios';
 
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILURE = 'AUTH_FAILURE';
 export const UPDATE_CURRENCY = 'UPDATE_Currency';
-
-
 
 
 export const currencyUpdate = (currency) => {
@@ -13,7 +12,6 @@ export const currencyUpdate = (currency) => {
         payload: {currency}
     }
 };
-
 
 export const authenticate = (username, password) => dispatch => {
     dispatch({ type: AUTH_REQUEST });
@@ -27,6 +25,9 @@ export const authenticate = (username, password) => dispatch => {
             console.log(payload);
             dispatch({ type: AUTH_SUCCESS, payload });
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error);
+            dispatch({ type: AUTH_FAILURE });
+        })
 };
 

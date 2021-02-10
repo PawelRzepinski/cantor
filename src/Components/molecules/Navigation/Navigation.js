@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import Button from '../../atoms/Button/Button';
 
 
 
@@ -29,6 +30,16 @@ const StyledMenuItem = styled.li`
     }
 `;
 
+const HeaderButton = styled(Button)`
+    padding: 0;
+
+    a {
+        display: block;
+        color: white;
+        padding: 5px 14px;
+    }
+`;
+
 
 const Navigation = () => (
     <nav>
@@ -36,6 +47,11 @@ const Navigation = () => (
             <StyledMenuItem><NavLink to="/currency" activeClass="active">Kursy walut</NavLink></StyledMenuItem>
             <StyledMenuItem><NavLink to="/about" activeClass="active">O nas</NavLink></StyledMenuItem>
             <StyledMenuItem><NavLink to="/contact" activeClass="active">Kontakt</NavLink></StyledMenuItem>
+            <StyledMenuItem>
+                <HeaderButton>
+                    <NavLink to="/login" activeClass="active">Log in</NavLink>            
+                </HeaderButton>
+            </StyledMenuItem>
         </StyledMenu>
     </nav>
 )

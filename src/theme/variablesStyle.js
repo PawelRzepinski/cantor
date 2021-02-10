@@ -1,6 +1,7 @@
 export const theme = {
     colors: {
         white: '#ffffff',
+        white70: 'rgba(255, 255, 255, 0.7)',
         black: '#000000',
         green: {
             primary00: '#E2F6E7',

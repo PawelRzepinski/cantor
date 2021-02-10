@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import PanelTemplate from '../../templates/PanelTemplate';
 import SideSectionImg from '../../assets/exchange.jpg';
 import { connect } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import { authenticate as authenticateAction } from '../../actions';
+import Button from '../../Components/atoms/Button/Button';
+import { H2 } from '../../Components/atoms/Headers/Headers';
+import Paragraph from '../../Components/atoms/Paragraph/Paragraph';
 
 
 
@@ -42,7 +47,7 @@ const StyledColumn = styled.div`
             color: ${({ theme }) => theme.colors.gray.gray80};
         }
 
-        button {
+        /* button {
             color: ${({ theme }) => theme.colors.white};
             background-color: ${({ theme }) => theme.colors.gray.gray60};
             border: none;
@@ -50,49 +55,95 @@ const StyledColumn = styled.div`
             padding: 12px 32px;
             margin-top: 16px;
             cursor: pointer;
-        }
+        } */
     }
 `;
 
 const StyledBefore = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 40%;
     height: 100%;
-    background-color: green;
+    background-color: ${({ theme }) => theme.colors.green.primary50};
+    color: ${({ theme }) => theme.colors.white};
+`;
+
+const ColumnButton = styled(Button)`
+    background-color: transparent;
+    border: 1px solid ${({ theme }) => theme.colors.white70};
+    border-radius: 50px;
+    color: ${({ theme }) => theme.colors.white70};
+    margin-top: 32px;
+    padding: 12px 60px;
+
+    &:hover {
+        background-color: transparent;
+        color: ${({ theme }) => theme.colors.white};
+        border-color: ${({ theme }) => theme.colors.white};
+    }
+`;
+
+const Header2 = styled(H2)`
+    margin-bottom: 32px;
+`;
+
+const Text = styled(Paragraph)`
+    color: ${({ theme }) => theme.colors.white};
+    line-height: 1.4;
+    letter-spacing: .5px;
+    text-align: center;
 `;
 
 
-const LoginView = ({ authenticate }) => (
+const LoginView = ({ userId, authenticate }) => (
     <PanelTemplate sideSectionImg={SideSectionImg}>
         <StyledWrapper>
             <StyledColumn>
                 <Formik
                     initialValues={{ username:'', password:'' }}
                     onSubmit={({ username, password }) => {
-                        console.log(username, password)
                         authenticate(username, password)
                     }}
                 >
-                    {({ isSubmitting }) => (
-                    <Form>
-                        <h1>Zaloguj się</h1>
-                        <Field type="text" name="username" placeholder="e-mail" />
-                        <ErrorMessage name="username" component="div" />
-                        <Field type="password" name="password" placeholder="Hasło" />
-                        <ErrorMessage name="password" component="div" />
-                        <button type="submit" disabled={isSubmitting}>Zaloguj się</button>
-                    </Form>
-                    )}
+                    {() => {
+                        if(userId) {
+                             return <Redirect to="/panel" />
+                        }
+                        return (
+                            <Form>
+                                <h1>Zaloguj się</h1>
+                                <Field type="text" name="username" placeholder="e-mail" />
+                                <ErrorMessage name="username" component="div" />
+                                <Field type="password" name="password" placeholder="Hasło" />
+                                <ErrorMessage name="password" component="div" />
+                                <Button type="submit">Zaloguj się</Button>
+                            </Form>
+                        )
+                    }}
                 </Formik>
             </StyledColumn>
             <StyledBefore>
-                
+                <Header2>Hello, friend</Header2>
+                <Text>Enter your personal details <br /> and start journey with us</Text>
+                <Link to="/signup"><ColumnButton>Sign up</ColumnButton></Link>
             </StyledBefore>
         </StyledWrapper>
     </PanelTemplate>
 )
 
+
+const mapStateToProps = ({ userId, userName}) => {
+    return {
+        userId,
+        userName
+    }
+}
+
 const mapDispatchToProps = dispatch => ({
     authenticate: (username, password) => dispatch(authenticateAction(username, password)),
 })
 
-export default connect(null, mapDispatchToProps)(LoginView);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView);
