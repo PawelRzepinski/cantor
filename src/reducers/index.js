@@ -1,5 +1,11 @@
 import { act } from "react-dom/test-utils";
-import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE, UPDATE_CURRENCY } from "../actions/index.js";
+import { 
+    AUTH_REQUEST, 
+    AUTH_SUCCESS, 
+    AUTH_FAILURE, 
+    UPDATE_CURRENCY, 
+    LOGOUT_SUCCESS
+} from "../actions/index.js";
 
 const initialState = {
     currency: [
@@ -33,6 +39,13 @@ const rootReducers = (state = initialState, action) => {
             return {
                 ...state,
                 loginStatus: 'fail'
+            }
+
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                userId: null,
+                userName: null
             }
         default:
             return state

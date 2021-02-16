@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import PanelTemplate from '../../templates/PanelTemplate';
-import SideSectionImg from '../../assets/exchange.jpg';
 import { connect } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import { authenticate as authenticateAction } from '../../actions';
@@ -46,16 +45,6 @@ const StyledColumn = styled.div`
             line-height: 20px;
             color: ${({ theme }) => theme.colors.gray.gray80};
         }
-
-        /* button {
-            color: ${({ theme }) => theme.colors.white};
-            background-color: ${({ theme }) => theme.colors.gray.gray60};
-            border: none;
-            border-radius: 4px;
-            padding: 12px 32px;
-            margin-top: 16px;
-            cursor: pointer;
-        } */
     }
 `;
 
@@ -98,7 +87,7 @@ const Text = styled(Paragraph)`
 
 
 const LoginView = ({ userId, authenticate }) => (
-    <PanelTemplate sideSectionImg={SideSectionImg}>
+    <PanelTemplate>
         <StyledWrapper>
             <StyledColumn>
                 <Formik

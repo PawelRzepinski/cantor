@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { logOut } from '../../../actions/index';
 import Logo from '../../atoms/Logo/Logo';
 import logoImg from "../../../assets/logo.svg";
 
@@ -19,12 +21,27 @@ const StyledWrapper = styled.header`
 `;
 
 
-
-const PanelHeader = () => (
+const PanelHeader = ({ userId, logOut }) => {
+    console.log(userId)
+    return (
     <StyledWrapper>
         <Logo image={logoImg} />
+        {userId && 
+            <button onClick={logOut}>klik</button>        
+        }
     </StyledWrapper>
-)
+)}
 
 
-export default PanelHeader;
+const mapStateToProps = ({ userId, userName }) => {
+    return {
+        userId,
+        userName
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    logOut: () => dispatch(logOut()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PanelHeader);
