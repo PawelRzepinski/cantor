@@ -10,7 +10,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: ${({ theme }) => theme.colors.gray.gray05};
+    background-color: ${({ theme }) => theme.colors.gray.gray00};
     padding-top: 130px;
     padding-bottom: 80px;
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PageTemplate from '../../templates/PageTemplate';
 import SideSectionImg from '../../assets/office.jpg';
 import BoxContact from '../../Components/atoms/BoxContact/BoxContact';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
